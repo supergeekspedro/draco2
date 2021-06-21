@@ -1,0 +1,30 @@
+doctype html
+html(lang="pt-BR")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title Draco
+        link(rel="stylesheet", href="/public/style.css")
+    body 
+
+        div(class="navbar")
+            div(class="navbar-logo")
+                img(src="/public/logo.png")
+            div(class="navbar-links")
+                a(href="/") Página Inicial 
+                a(href="/about") Sobre
+        
+        div(class="form")
+            form(action="/publicacao", method="POST")
+                input(type="text", name="usuario", placeholder="Usuario")
+                textarea(name="conteudo", placeholder="Conteúdo") 
+                input(type="text", name="link", placeholder="URL da imagem")
+                input(type="submit", value="Publicar")
+
+        div(class="content")
+            each r in resultados 
+                div(class="content-model")
+                    h3 #{r.usuario}
+                    p #{r.conteudo}
+                    img(src=r.link)
+                    a(href=`/delete/${r.codigo}`) Deletar
